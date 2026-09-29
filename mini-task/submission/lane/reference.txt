@@ -1,0 +1,4 @@
+task: lane
+opened_at: 2026-09-29T10:31:10+07:00
+lock_sha256: 872d7df0d82b3522a1a5de4d4a1adb4cee7cd6915d85eb0a203d2b7a86092a89
+source: refs\lane.zip

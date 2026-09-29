@@ -1,0 +1,11 @@
+task: lane
+sha256: 872d7df0d82b3522a1a5de4d4a1adb4cee7cd6915d85eb0a203d2b7a86092a89
+code: 872D-7DF0
+locked_at: 2026-09-29T10:31:06+07:00
+shapes: image_context=6, lane_marking=90
+cvat_owner: admin
+cvat_export: job 24
+cvat_created: 2026-09-29 03:14:34.567523+00:00
+cvat_dumped: 2026-09-29 03:29:44.409541+00:00
+shape_sources: manual=96
+relock_count: 0

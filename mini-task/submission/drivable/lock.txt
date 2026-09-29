@@ -1,0 +1,11 @@
+task: drivable
+sha256: ac10d6c52bf298208a5f62aee5fb11eb3fade3610ed5ba1ed83c8cde1eb112eb
+code: AC10-D6C5
+locked_at: 2026-09-29T11:01:45+07:00
+shapes: drivable_area=15
+cvat_owner: admin
+cvat_export: job 25
+cvat_created: 2026-09-29 03:46:01.762671+00:00
+cvat_dumped: 2026-09-29 03:59:47.657612+00:00
+shape_sources: manual=15
+relock_count: 0

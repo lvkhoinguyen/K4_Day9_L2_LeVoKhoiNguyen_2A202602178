@@ -1,1 +1,3 @@
 id,task,sample,case,rule,evidence,status,proposed_by,ratified_by,date
+DEC-01,lane,bb890202-d9d48310.jpg,Vach dut va vat can che khuat,Vach dut ve bang 1 polyline lien tuc doc theo tim cac doan dut; khi gap vat can (nhu xe) che khuat tam nhin thi dung lai ngay mep ngoai vat can khong noi xuyen qua,bb890202 tai duoi xe SUV,proposed,nguyen,,2026-09-29
+DEC-02,drivable,c068a67b-03b6e200.jpg,Vung alternative canh xe do,Khong to polygon drivable tran vao khoang trong ngay sau hoac giua cac xe do ven duong tru khi co du khoang trong tao thanh 1 lan chay thuc su,c068a67b tai khu vuc oto do hai ben le,proposed,nguyen,,2026-09-29

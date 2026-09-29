@@ -1,1 +1,7 @@
 task,sample,object,difference,error_type,who_is_right,action,note
+lane,bb890202-d9d48310.jpg,vach_dut_phan_lan,Toi ve tung doan dut thanh cac polyline rieng trong khi reference noi thanh 1 polyline xuyen suot tim cac net dut,geometry,reference,rework,Card 1 quy dinh ro 1 polyline duy nhat bam theo tim cac net dut khong tach roi
+lane,c3cd6c82-b5d52beb.jpg,R3/B2_vach_bien_trang,Chua chon laneTypes laneStyle laneDirection; reference gan single white solid parallel,attribute,reference,rework,Vach bien phai la vach don trang lien net song song huong xe chay
+lane,bb890202-d9d48310.jpg,vach_trai_canh_xe_SUV,Polyline dung ngay goc sau xe SUV phia truoc khong noi tiep qua xe,geometry,me,keep,Quy tac 3 trong card 1 quy dinh bi che thi dung khong doan tiep qua than xe
+drivable,c068a67b-03b6e200.jpg,direct,direct vung hinh hoc khop rat cao voi reference (IoU 0.920 lech rat it o mep vung),geometry,me,keep,Lan direct truoc mui xe duoc xac dinh chinh xac bam theo vach ke duong
+drivable,c068a67b-03b6e200.jpg,alternative,Vung alternative toi ve rong hon reference (thua pixel o mep lan do keo vao khu vuc xe do),geometry,reference,rework,Card 2 quy dinh khu vuc co xe do phia truoc khong thuoc vung di chuyen duoc ngay nen khong to tran vao
+drivable,bb5cc516-c98d1fbe.jpg,direct,direct lech o phan phia tren do anh mua bi mo kinh va gia do che goc tren,geometry,reference,add_rule,Dung lai o vung con nhin ro mat duong khong keo qua vung bi gia do kinh hoac vet mua che khuat
