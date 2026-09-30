@@ -1,0 +1,11 @@
+task: traffic_sign
+sha256: ee7a0b9c4994234976b3a721cb62322e4b7e167558d0fa7043a8bfe3c30ec27d
+code: EE7A-0B9C
+locked_at: 2026-09-30T09:32:39+07:00
+shapes: traffic_sign=24
+cvat_owner: admin
+cvat_export: job 26
+cvat_created: 2026-09-30 01:49:24.737116+00:00
+cvat_dumped: 2026-09-30 02:10:28.273085+00:00
+shape_sources: manual=24
+relock_count: 0

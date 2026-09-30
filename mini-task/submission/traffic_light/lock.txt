@@ -1,0 +1,11 @@
+task: traffic_light
+sha256: 23c696b6deb00719787c8f74edb7c7f94a7e7ea06a44b5965e99ef45dc0cd35e
+code: 23C6-96B6
+locked_at: 2026-09-30T10:08:13+07:00
+shapes: traffic_light=90
+cvat_owner: admin
+cvat_export: task 27 "light-nguyen"
+cvat_created: 2026-09-30 02:37:02.934211+00:00
+cvat_dumped: 2026-09-30 02:41:57.502797+00:00
+shape_sources: manual=3
+relock_count: 0

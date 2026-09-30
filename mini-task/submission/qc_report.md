@@ -1,14 +1,10 @@
 # QC report
 
-Họ tên: TODO · Chế độ: TODO (`cá nhân` hoặc `nhóm`) · Nếu nhóm — các thành viên: TODO
+Họ tên: Lê Võ Khôi Nguyên · Chế độ: cá nhân
 Guideline dùng: `GUIDE.md` + 4 card, bản phát ngày học.
 
-Viết ở phút 205–225. Xoá mọi chữ `TODO` khi xong — `make check` đếm chữ này.
+Viết ở phút 205–225.
 
-- **Nhóm**: chọn một bạn cùng nhóm đã khoá xong, chạy `make peer TASK=<task> FILE=<annotations.xml của họ>
-  CODE=<mã khoá của họ> NAME=<tên họ>`. Lệnh tự viết `submission/<task>/peer-<tên>.html` và `.txt` — mở file
-  `.html` bằng trình duyệt để xem overlay hai bài. Report này là bạn review **bài đã khoá của họ**, không phải
-  bản của mình.
 - **Cá nhân**: chọn task đầu tiên bạn đã khoá (lane) và mở lại `submission/lane/compare.html` của chính mình,
   sau khi vẽ nó ≥ 2 giờ — coi như bài của người khác, không nhớ lại lúc vẽ đã nghĩ gì.
 
@@ -19,12 +15,12 @@ lóa, biển nhỏ, điểm chuyển state), không lấy ngẫu nhiên.
 
 | # | Task | Sample (ảnh / frame) | Lát (vì sao chọn) |
 |---|---|---|---|
-| 1 | TODO | TODO | TODO |
-| 2 | TODO | TODO | TODO |
-| 3 | TODO | TODO | TODO |
-| 4 | TODO | TODO | TODO |
-| 5 | TODO | TODO | TODO |
-| 6 | TODO | TODO | TODO |
+| 1 | lane | bb890202-d9d48310.jpg | Cao tốc nhiều làn có vạch đứt dài và xe SUV phía trước che khuất tầm nhìn |
+| 2 | lane | c3cd6c82-b5d52beb.jpg | Đường thẳng ban ngày có vạch biên liền nét màu trắng bên phải |
+| 3 | drivable | c068a67b-03b6e200.jpg | Đô thị có xe đỗ dày đặc sát mép đường hai bên dễ tô nhầm |
+| 4 | drivable | bb5cc516-c98d1fbe.jpg | Thời tiết mưa làm mờ kính lái và giá đỡ gương che góc trên |
+| 5 | traffic_sign | 00088.png | Cao tốc sương mù có biển chỉ dẫn lớn trên long môn và biển hạn chế tốc độ |
+| 6 | traffic_sign | 00223.png | Đường dân cư có cụm biển hạn chế tốc độ kèm 2 biển phụ chữ nhật |
 
 ## 2. Lỗi tìm thấy
 
@@ -39,12 +35,12 @@ không có".
 
 | Task | Sample | Object | Mô tả lỗi | error_type | severity | action | Downstream sai gì nếu bỏ qua |
 |---|---|---|---|---|---|---|---|
-| TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
-| TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
-| TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+| lane | bb890202-d9d48310.jpg | vach_dut | Tách vạch đứt thành nhiều polyline rời rạc thay vì 1 đường liên tục qua tim | geometry | major | rework | Model dự đoán các đoạn đứt là chướng ngại vật hoặc đứt gãy làn |
+| lane | c3cd6c82-b5d52beb.jpg | R3/B2_vach_bien | Chưa chọn laneTypes và laneStyle để sót __undefined__ | attribute | major | rework | Model không phân biệt được vạch ranh giới làn và lề đường |
+| traffic_sign | 00088.png | B3_bien_bochum | Biển chỉ dẫn đường cao tốc 900m không thuộc 43 class GTSDB | guideline_gap | minor | escalate | Annotator ép class tùy tiện làm nhiễu dữ liệu huấn luyện |
 
 ## 3. Kết luận cho batch
 
-- Accept / rework / escalate cả batch, và lý do: TODO
-- Note cho người label (1–2 câu, nói cách sửa — với cá nhân thì viết cho chính mình): TODO
-- Known limitation phải ghi khi handoff (điều guideline chưa quyết): TODO
+- Accept / rework / escalate cả batch, và lý do: Accept with rework. Tổng thể các vùng drivable và bám lane được vẽ sát thực tế; cần rework các polyline bị cắt khúc ngắn ở task lane và bổ sung các thuộc tính chưa được gán trước khi release dữ liệu sang pipeline huấn luyện.
+- Note cho người label (1–2 câu, nói cách sửa — với cá nhân thì viết cho chính mình): Luôn vẽ 1 polyline duy nhất bám theo tim của chuỗi vạch đứt cho đến khi gặp vật thể che khuất thì dừng lại ngay mép ngoài vật thể; tuyệt đối kiểm tra không để sót attribute mang giá trị undefined trước khi export bài.
+- Known limitation phải ghi khi handoff (điều guideline chưa quyết): Chưa có quy chuẩn thống nhất về việc gắn nhãn biển phụ chữ nhật (bổ trợ thời gian, khoảng cách) và biển chỉ dẫn trên giá long môn khi đối chiếu với benchmark 43 class GTSDB.

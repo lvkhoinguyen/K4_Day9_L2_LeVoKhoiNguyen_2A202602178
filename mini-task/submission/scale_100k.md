@@ -3,7 +3,7 @@
 Họ tên: Lê Võ Khôi Nguyên
 
 Mỗi mini-task trả lời một câu: **"Nếu scale lên 100k frames, lỗi nào sẽ trở thành systematic defect?"** Viết ngay sau
-khi ghi comparison log của task đó. Dựa vào một lỗi bạn **thật sự** gặp hôm nay. Xoá mọi chữ `TODO` khi xong.
+khi ghi comparison log của task đó. Dựa vào một lỗi bạn **thật sự** gặp hôm nay.
 
 Mỗi câu trả lời có 3 phần: lỗi (và bằng chứng: task + sample), vì sao nó lặp lại có hệ thống thay vì ngẫu nhiên,
 và cách phát hiện sớm (lát nào cần oversample, tín hiệu QC nào).
@@ -26,8 +26,16 @@ và cách phát hiện sớm (lát nào cần oversample, tín hiệu QC nào).
 
 ## Traffic sign
 
-TODO
+- **Lỗi & Bằng chứng**: Task `traffic_sign`, ảnh `00088.png` (biển chỉ dẫn cao tốc Bochum 900m) và `00223.png` (biển phụ khoảng cách 300m, thời gian 7-18h). Lỗi ép các biển phụ và biển ngoài 43 class GTSDB vào các class có sẵn hoặc bỏ sót không gán nhãn, và xu hướng zoom đoán class biển ở quá xa thay vì để `unknown`.
+- **Vì sao lặp lại có hệ thống**: Khi thiếu ontology chuẩn cho biển phụ và biển chỉ dẫn cao tốc, các annotator sẽ phân loại tùy tiện (người gán `other`, người ép vào `prohibitory` hoặc bỏ qua). Khi scale 100k frames, model sẽ học sai ngữ nghĩa nghiêm trọng (ví dụ nhầm số khoảng cách 300m trên biển phụ thành hạn chế tốc độ, hoặc nhận diện sai biển cấm).
+- **Cách phát hiện sớm & Ngăn chặn**:
+  - Oversample các lát cắt cao tốc, nút giao đô thị có nhiều biển báo phụ ghép cụm (stacked signs).
+  - Tín hiệu QC: Kiểm tra tự động tỷ lệ box mang `sign_class = unknown` ở các box nhỏ (<32px) để phát hiện đoán mò, quét cảnh báo các box có attribute `__undefined__`.
 
 ## Traffic light
 
-TODO
+- **Lỗi & Bằng chứng**: Task `traffic_light`, chuỗi 30 frames `dayClip5`. Lỗi quên đặt cờ `outside` khi đầu đèn trôi ra khỏi biên khung hình (tạo ra ghost box nội suy sai) và lỗi gán sai `relevance` đối với xe ego.
+- **Vì sao lặp lại có hệ thống**: Khi làm việc trên video tracking, annotator thường chỉ chú ý frame xuất hiện và keyframe chuyển màu đèn mà quên xử lý frame đèn biến mất ở rìa góc máy. Trên quy mô 100k frames, việc này làm model sinh ra dự đoán ảo ở mép ảnh và gán nhầm tín hiệu đèn của làn rẽ cho hướng đi thẳng của ego, dẫn tới quyết định điều khiển xe nguy hiểm (phanh gấp hoặc vượt đèn).
+- **Cách phát hiện sớm & Ngăn chặn**:
+  - Oversample các ngã tư lớn có nhiều cột đèn tín hiệu theo làn và các cảnh xe rẽ cua nhanh.
+  - Tín hiệu QC: Tự động phát hiện các box track nằm sát mép ảnh (>95% width/height) mà không có keyframe `outside` ở frame kế tiếp; kiểm tra tính liên tục logic của trạng thái đèn (không thể chuyển trực tiếp từ red sang green mà không qua yellow trong 1 frame).

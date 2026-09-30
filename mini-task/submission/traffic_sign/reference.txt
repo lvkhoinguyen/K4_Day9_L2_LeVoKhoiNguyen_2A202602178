@@ -1,0 +1,4 @@
+task: traffic_sign
+opened_at: 2026-09-30T09:33:43+07:00
+lock_sha256: ee7a0b9c4994234976b3a721cb62322e4b7e167558d0fa7043a8bfe3c30ec27d
+source: refs\traffic_sign.zip
